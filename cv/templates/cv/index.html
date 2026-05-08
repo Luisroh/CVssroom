@@ -1,0 +1,1212 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Página de imitación del frontend del classroom. Todo con fines de práctica en el ámbito educativo, por descontado">
+    <meta name="keywords" content="classroom, clases online, clases a distancia">
+    <meta name="author" content="luisr0h">
+
+    <meta name="robots" content="index, follow">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta property="og:title" content="IFCD0112_02">
+    <meta property="og:description"
+        content="Página de imitación del frontend del classroom. Todo con fines de práctica en el ámbito educativo, por descontado">
+
+    <meta property="og:img" content="https://picsum.photos/1200/630">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://classroom.google.com">
+
+    <title>IFCD0112_02</title>
+
+    <link rel="icon" href="{% static '../static/perfil/img/CVssroom.png' %}" sizes="16x16">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Playwrite+IE:wght@100..400&display=swap');
+
+        :root {
+            --colour-hover: rgba(146, 146, 151, 0.341);
+            --colour-secondary-backgroud: rgb(248, 250, 253);
+            --colour-primary-background: white;
+            --colour-dark: black;
+            --colour-highlight: blue;
+            --colour-complementary: rgb(228, 132, 100);
+
+            --font-family: "Kaushan Script";
+
+            --font-size-nm: 0.95rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h4 {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        body {
+            width: 100%;
+            background-color: var(--colour-secondary-backgroud);
+            font-family: var(--font-family);
+            z-index: 3;
+        }
+
+        header {
+            position: sticky;
+            top: 0px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 7.89vh;
+            width: 100%;
+            background-color: var(--colour-secondary-backgroud);
+            z-index: 2;
+        }
+
+        aside {
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            width: 4.9vw;
+            background-color: var(--colour-secondary-backgroud);
+        }
+
+        aside>.clickable_image {
+            margin-top: 30px;
+            width: 30px;
+            height: 30px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 4.9vw;
+            width: calc(100% - 4.9vw);
+            border: 1px solid var(--colour-secondary-background);
+            border-top-left-radius: 50px;
+            z-index: 2;
+        }
+
+        .header_nav {
+            display: flex;
+            padding: 20px;
+        }
+
+        #contact,
+        .header_nav>.clickable_image {
+            margin: 10px;
+            width: 25px;
+            height: 25px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #contact:hover,
+        .clickable_image:hover {
+            box-shadow: 0 0px 20px var(--colour-dark);
+        }
+
+        .header_nav>img {
+            margin: 10px;
+            width: 25px;
+            height: 25px;
+        }
+
+        .header_nav>h2 {
+            margin-top: 3px;
+            margin-left: 10px;
+        }
+
+        .header_nav>h2:hover {
+            color: var(--colour-highlight);
+            text-decoration: underline;
+        }
+
+        #main_nav {
+            position: sticky;
+            top: 7.89vh;
+            display: flex;
+            width: 100%;
+            height: 7vh;
+            justify-content: right;
+            background-color: var(--colour-primary-background);
+            border: 1px solid var(--colour-primary-background);
+            border-bottom: 1px solid var(--colour-dark);
+            border-top-left-radius: 50px;
+            z-index: 2;
+        }
+
+        .button {
+            margin: 5px;
+            padding: 10px;
+            border: none;
+            font-family: var(--font-family);
+            background-color: var(--colour-primary-background);
+            font-size: var(--font-size-nm);
+        }
+
+        #main_nav>button:hover {
+            background-color: var(--colour-hover);
+        }
+
+
+        #main_section {
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--colour-primary-background);
+        }
+
+        #banner {
+            width: 850px;
+            height: 300px;
+            border: 1px solid var(--colour-primary-background);
+            border-radius: 20px;
+            margin-top: 25px;
+        }
+
+        .block_square {
+            display: none;
+            width: 75%;
+            background-color: var(--colour-secondary-backgroud);
+            margin-top: 25px;
+            border: 3px solid var(--colour-secondary-background);
+            border-radius: 20px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .info_square>div {
+            margin: 7.5px;
+        }
+
+        .flex_square {
+            display: none;
+            justify-content: space-between;
+            width: 75%;
+            background-color: var(--colour-secondary-backgroud);
+            margin-top: 25px;
+            border: 3px solid var(--colour-secondary-background);
+            border-radius: 20px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        #professionalProfile>div {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 45%;
+            padding: 15px;
+            border: 5px dotted var(--colour-dark);
+        }
+
+
+        .square_subdivision {
+            width: 100%;
+            display: flex;
+            flex-direction: row-reverse;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+
+        .square_subdivision>div {
+            width: 45%;
+            padding: 5px;
+            border: 5px dotted var(--colour-dark);
+            margin-bottom: 25px;
+        }
+
+        .square_subdivision>div:hover,
+        #professionalProfile>div:hover,
+        #personalInfo:hover,
+        #otherInfo:hover {
+            transform: scale(1.05);
+            transition: 0.5s;
+            background-color: var(--colour-hover);
+        }
+
+        .activo {
+            display: block;
+        }
+
+        .activo_flex {
+            display: flex;
+        }
+
+        .activo_boton {
+            color: var(--colour-highlight);
+            border-bottom: 5px solid var(--colour-highlight);
+        }
+
+        #contactModal {
+            display: none;
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            width: 320px;
+            background-color: var(--colour-primary-background);
+            border: 2px solid var(--colour-dark);
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            font-family: var(--font-family);
+        }
+
+        .modal-content {
+            padding: 20px;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 15px;
+            color: var(--colour-dark);
+        }
+
+        .modal-content input,
+        .modal-content textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+        }
+
+        .modal-content textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .modal-content button {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--colour-highlight);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .modal-content button:hover {
+            background-color: darkblue;
+        }
+
+        .close-modal {
+            float: right;
+            font-size: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close-modal:hover {
+            color: var(--colour-dark);
+        }
+
+        #successModal .modal-content {
+            text-align: center;
+        }
+
+        #successModal p {
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            aside {
+                width: 70px;
+                min-width: 60px;
+            }
+
+            main {
+                margin-left: 70px;
+                width: calc(100% - 70px);
+            }
+
+            #banner {
+                width: 90%;
+                height: auto;
+                max-height: 200px;
+                object-fit: cover;
+            }
+
+            .block_square,
+            .flex_square {
+                width: 85%;
+            }
+
+            .square_subdivision {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .square_subdivision>div {
+                width: 90%;
+            }
+
+            #professionalProfile>div {
+                width: 90%;
+                margin-bottom: 15px;
+            }
+
+            #professionalProfile {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header_nav h2 {
+                font-size: 1.2rem;
+            }
+
+            #contact,
+            .clickable_image {
+                cursor: pointer;
+            }
+
+            #main_nav {
+                overflow-x: auto;
+                justify-content: flex-start;
+                gap: 5px;
+                padding: 5px;
+                white-space: nowrap;
+            }
+
+            .button {
+                font-size: 0.85rem;
+                padding: 8px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 0.9rem;
+            }
+
+            header {
+                flex-direction: column;
+                height: auto;
+                padding: 8px 0;
+            }
+
+            .header_nav {
+                width: 100%;
+                justify-content: space-between;
+                padding: 5px 10px;
+            }
+
+            .header_nav h2 {
+                font-size: 1rem;
+                display: none;
+            }
+
+            aside {
+                position: fixed;
+                bottom: 0;
+                top: auto;
+                left: 0;
+                width: 100%;
+                height: 60px;
+                flex-direction: row;
+                justify-content: space-around;
+                background-color: var(--colour-secondary-backgroud);
+                border-top: 1px solid var(--colour-dark);
+                z-index: 10;
+            }
+
+            aside>.clickable_image {
+                margin-top: 0;
+                width: 35px;
+                height: 35px;
+            }
+
+            main {
+                margin-left: 0;
+                margin-bottom: 60px;
+                width: 100%;
+            }
+
+            #main_nav {
+                top: auto;
+                position: relative;
+                flex-wrap: wrap;
+                justify-content: center;
+                height: auto;
+                border-radius: 0;
+            }
+
+            .button {
+                font-size: 0.7rem;
+                padding: 6px 8px;
+                margin: 3px;
+            }
+
+            #banner {
+                width: 95%;
+                margin-top: 15px;
+            }
+
+            .block_square,
+            .flex_square {
+                width: 95%;
+                padding: 10px;
+            }
+
+            .square_subdivision>div {
+                width: 95%;
+                padding: 10px;
+            }
+
+            #professionalProfile>div {
+                width: 95%;
+                padding: 10px;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+
+            h4 {
+                font-size: 1rem;
+            }
+
+            #contact:hover,
+            .clickable_image:hover {
+                box-shadow: none;
+            }
+
+            #contactModal {
+                width: 90%;
+                right: 5%;
+                left: 5%;
+                top: 70px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .button {
+                font-size: 0.65rem;
+                padding: 4px 6px;
+            }
+
+            .header_nav img:first-child {
+                display: none;
+            }
+
+            .header_nav h2 {
+                display: none;
+            }
+
+            aside>.clickable_image {
+                width: 30px;
+                height: 30px;
+            }
+
+            main {
+                margin-bottom: 55px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header_nav">
+            <div class="clickable_image" style="background-image: url({% static 'perfil/img/desplegable.png' %});">
+            </div>
+            <img src="{% static 'perfil/img/CVssroom.png' %}" alt="imagen de un pizarrón">
+            <h2>CVssroom</h2>
+            <img src="{% static 'perfil/img/indicador.png' %}" alt="símmbolo de mayor que">
+            <h2>{{cv.personal_info.apellidos}}, {{cv.personal_info.nombre}}</h2>
+        </div>
+        </div>
+        <div class="header_nav">
+            <div id="contact" style="background-image: url({% static 'perfil/img/menú2.png' %})"
+                alt="imagen de 9 puntos colocados en 3 filas y 3 columnas"></div>
+        </div>
+    </header>
+
+    <aside>
+        <div class="clickable_image" style="background-image: url({% static 'perfil/img/home.png' %});"
+            alt="imagen de un calendario"></div>
+        <div class="clickable_image" style="background-image: url({% static 'perfil/img/skills.png' %});"
+            alt="imagen home">
+        </div>
+        <div class="clickable_image" style="background-image: url({% static 'perfil/img/educación.png' %});"
+            alt="imagen básica de un gorro universitario pixel art"></div>
+        <div class="clickable_image" style="background-image: url({% static 'perfil/img/Contacto.png' %});"
+            alt="imagen de un buzón con flecha hacia abajo"></div>
+        <div class="clickable_image" style="background-image: url({% static 'perfil/img/Trabajo.png' %});"
+            alt="dibujo de una tuerca"></div>
+    </aside>
+
+    <main>
+        <nav id="main_nav">
+            {% if cv.personal_info %}
+            <button class="button" id="info_bttn">Datos personales</button>
+            {% endif %}
+            {% if cv.professional_profile %}
+            <button class="button" id="perfil_prof_bttn">Perfil profesional</button>
+            {% endif %}
+            {% if cv.work_experience %}
+            <button class="button" id="experiencia_bttn">Experiencia laboral</button>
+            {% endif %}
+            {% if cv.education %}
+            <button class="button" id="education_bttn">Formación reglada</button>
+            {% endif %}
+            {% if cv.complementary_training %}
+            <button class="button" id="complementaryTraining_bttn">Formación no reglada</button>
+            {% endif %}
+            {% if cv.skills %}
+            <button class="button" id="skill_bttn">Habilidades</button>
+            {% endif %}
+            {% if cv.languages %}
+            <button class="button" id="language_bttn">Idiomas</button>
+            {% endif %}
+            {% if cv.projects %}
+            <button class="button" id="project_bttn">Proyectos</button>
+            {% endif %}
+            {% if cv.achievements %}
+            <button class="button" id="achievement_bttn">Logros</button>
+            {% endif %}
+            {% if cv.volunteering %}
+            <button class="button" id="volunteering_bttn">Voluntariado</button>
+            {% endif %}
+            {% if cv.social_network %}
+            <button class="button" id="socialNetwork_bttn">Redes sociales</button>
+            {% endif %}
+            {% if cv.interests %}
+            <button class="button" id="interest_bttn">Intereses</button>
+            {% endif %}
+            {% if cv.other_info %}
+            <button class="button" id="otherInfo_bttn">Extra</button>
+            {% endif %}
+        </nav>
+
+        <section id="main_section">
+            <img id="banner" src="{% static 'perfil/img/banner.png' %}"
+                alt="imagen de acabado sencillo con una mesa en la eesquina derecha y un portátil, ratón y auriculares sobre ella">
+
+            {% if cv.personal_info %}
+            <article class="block_square" id="personalInfo">
+                <h3>Datos personales</h3>
+                <div>Nombre : {{cv.personal_info.nombre}} {{cv.personal_info.apellidos}}</div>
+                {% if cv.fecha_nacimiento %}
+                <div>Fecha de nacimiento: {{cv.fecha_nacimiento}}</div>
+                {% endif %}
+                {% if cv.personal_info.nacionalidad %}
+                <div>Nacionalidad : {{cv.personal_info.nacionalidad}}</div>
+                {% endif %}
+                <div>Correo : {{cv.personal_info.email_profesional1}}</div>
+                {% if cv.personal_info.email_profesional2 %}
+                <div>Correo secundario: {{cv.personal_info.email_profesional2}}</div>
+                {% endif %}
+                {% if cv.personal_info.telefono1 %}
+                <div>Teléfono1 : {{cv.personal_info.telefono1}}</div>
+                {% endif %}
+                <div>Teléfono2 : {{cv.personal_info.telefono2}}</div>
+                {% if cv.personal_info.ciudad and cv.personal_info.pais and cv.personal_info.codigo_postal %}
+                <div>Ubicación : {{cv.personal_info.ciudad}}, {{cv.personal_info.pais}},
+                    {{cv.personal_info.codigo_postal}}
+                </div>
+                {% endif %}
+                <div>Disponibilidad : {{cv.personal_info.disponibilidad}}</div>
+                {% if cv.personal_info.carnet_conducir %}
+                <div>Carnet de conducir: Dispongo de carnet</div>
+                {% else %}
+                <div>Carnet de conducir: No dispongo de carnet</div>
+                {% endif %}
+            </article>
+            {% endif %}
+
+            {% if cv.professional_profile %}
+            <article class="flex_square" id="professionalProfile">
+                <div>
+                    <div>
+                        <h3>Profesión</h3>
+                        <p>{{cv.professional_profile.profesion}}</p>
+                    </div>
+                    {% if cv.professional_profile.objetivo %}
+                    <div>
+                        <h3>Objetivo</h3>
+                        <p>{{cv.professional_profile.objetivo}}</p>
+                    </div>
+                    {% endif %}
+                </div>
+                <div>
+                    <h3>Resumen</h3>
+                    <p>{{cv.professional_profile.resumen}}</p>
+                </div>
+            </article>
+            {% endif %}
+
+            {% if cv.work_experience %}
+            <article class="flex_square" id="workExperience">
+                <h3>Experiencia Laboral</h3>
+                <div class="square_subdivision">
+                    {% for work_experience in cv.work_experience %}
+                    <div>
+                        <h3>{{work_experience.puesto}}</h3>
+                        {% if work_experience.empresa %}
+                        <h4>Empresa</h4>
+                        <p>{{work_experience.empresa}}</p>
+                        {% endif %}
+                        {% if work_experience.ubicacion %}
+                        <h4>Ubicación</h4>
+                        <p>{{work_experience.ubicacion}}</p>
+                        {% endif %}
+                        <h4>Inicio</h4>
+                        <p>{{work_experience.fecha_inicio}}</p>
+                        {% if work_experience.fecha_fin %}
+                        <h4>Fin</h4>
+                        <p>{{work_experience.fecha_fin}}</p>
+                        {% endif %}
+                        {% if work_experience.descripcion %}
+                        <h4>Descripción</h4>
+                        <p>{{work_experience.descripcion}}</p>
+                        {% endif %}
+                        {% if work_experience.logros %}
+                        <h4>Logros</h4>
+                        <p>{{work_experience.logros}}</p>
+                        {% endif %}
+                        {% if work_experience.trabajo_actual %}
+                        <h4>Actividad en curso</h4>
+                        {% else %}
+                        <h4>Actividad concluida</h4>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </article>
+            {% endif %}
+
+            {% if cv.education %}
+            <article class="flex_square" id="education">
+                <h3>Formación reglada</h3>
+                <div class="square_subdivision">
+                    {% for element in cv.education %}
+                    <div>
+                        <h4>Título</h4>
+                        <p>{{element.titulo}}</p>
+                        {% if element.centro %}
+                        <h4>Institución</h4>
+                        <p>{{element.centro}}</p>
+                        {% endif %}
+                        {% if element.ubicacion %}
+                        <h4>Ubicacion</h4>
+                        <p>{{element.ubicacion}}</p>
+                        {% endif %}
+                        <h4>Inicio</h4>
+                        <p>{{element.fecha_inicio}}</p>
+                        {% if element.fecha_fin %}
+                        <h4>Fin</h4>
+                        <p>{{element.fecha_fin}}</p>
+                        {% endif %}
+                        {% if element.en_curso %}
+                        <h4>Estudios en curso</h4>
+                        {% else %}
+                        <h4>Estudios finalizados</h4>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </article>
+            {% endif %}
+
+            {% if cv.complementary_training %}
+            <article class="flex_square" id="complementaryTraining">
+                <h3>Formación no reglada</h3>
+                <div class="square_subdivision">
+                    {% for element in cv.complementary_training %}
+                    <div>
+                        <h4>Tipo</h4>
+                        <p>{{element.tipo}}</p>
+                        <h4>Nombre</h4>
+                        <p>{{element.nombre}}</p>
+                        {% if element.entidad %}
+                        <h4>Institución</h4>
+                        <p>{{element.entidad}}</p>
+                        {% endif %}
+                        {% if element.fecha %}
+                        <h4>Fecha</h4>
+                        <p>{{element.fecha}}</p>
+                        {% endif %}
+                        {% if element.descripcion %}
+                        <h4>Descripcion</h4>
+                        <p>{{element.descripcion}}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </article>
+            {% endif %}
+
+            {% if cv.skills %}
+            <article class="flex_square" id="skill">
+                <h3>Habilidades</h3>
+                <div class="square_subdivision">
+                    {% for element in cv.skills %}
+                    <div>
+                        <h4>Tipo</h4>
+                        <p>{{element.tipo}}</p>
+                        {% if element.categoria %}
+                        <h4>Categoria</h4>
+                        <p>{{element.categoria}}</p>
+                        {% endif %}
+                        <h4>Nombre</h4>
+                        <p>{{element.nombre}}</p>
+                        {% if element.nivel %}
+                        <h4>Nivel</h4>
+                        <p>{{element.nivel}}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </article>
+            {% endif %}
+
+            {% if cv.languages %}
+            <article class="flex_square" id="language">
+                <h3>Idiomas</h3>
+                <div class="square_subdivision">
+                    {% for element in cv.languages %}
+                    <div>¡
+                        <h4>Idioma</h4>
+                        <p>{{element.idioma}}</p>
+                        <h4>Nivel</h4>
+                        <p>{{element.nivel}}</p>
+                        {% if element.certificacion %}
+                        <h4>Certificación</h4>
+                        <p>{{element.certificacion}}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </article>
+            {% endif %}
+
+            {% if cv.projects %}
+            <article class="flex_square" id="project">
+                <h3>Proyectos</h3>
+                <div class="square_subdivision">
+                    {% for element in cv.projects %}
+                    <div>
+                        <h4>Nombre</h4>
+                        <p>{{element.nombre}}</p>
+                        {% if element.tecnologias %}
+                        <h4>Tecnologias</h4>
+                        <p>{{element.tecnologias}}</p>
+                        {% endif %}
+                        {% if element.descripcion %}
+                        <h4>Descripcion</h4>
+                        <p>{{element.descripcion}}</p>
+                        {% endif %}
+                        {% if element.link %}
+                        <a href="{{element.link}}">{{element.link}}</a>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </article>
+            {% endif %}
+
+            {% if cv.achievements %}
+            <article class="flex_square" id="achievement">
+                <h3>Logros</h3>
+                <div class="square_subdivision">
+                    {% for element in cv.achievements %}
+                    <div>
+                        <h4>Título</h4>
+                        <p>{{element.titulo}}</p>
+                        <h4>Tipo</h4>
+                        <p>{{element.tipo}}</p>
+                        {% if element.fecha %}
+                        <h4>Fecha</h4>
+                        <p>{{element.fecha}}</p>
+                        {% endif %}
+                        {% if element.descripcion %}
+                        <h4>Descripcion</h4>
+                        <p>{{element.descripcion}}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </article>
+            {% endif %}
+
+            {% if cv.volunteering %}
+            <article class="flex_square" id="volunteering">
+                <h3>Voluntariado</h3>
+                <div class="square_subdivision">
+                    {% for element in cv.volunteering %}
+                    <div>
+                        <h4>Organización</h4>
+                        <p>{{element.organizacion}}</p>
+                        <h4>Función</h4>
+                        <p>{{element.funcion}}</p>
+                        {% if element.impacto %}
+                        <h4>Impacto</h4>
+                        <p>{{element.impacto}}</p>
+                        {% endif %}
+                        {% if element.fecha_inicio %}
+                        <h4>Inicio</h4>
+                        <p>{{element.fecha_inicio}}</p>
+                        {% endif %}
+                        {% if element.fecha_fin %}
+                        <h4>Fin</h4>
+                        <p>{{element.fecha_fin}}</p>
+                        {% endif %}
+                        {% if element.en_curso %}
+                        <h4>Actualmente en curso</h4>
+                        {% else %}
+                        <h4>Voluntariado finalizado</h4>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </article>
+            {% endif %}
+
+            {% if cv.social_network %}
+            <article class="flex_square" id="socialNetwork">
+                <h3>Redes sociales</h3>
+                {% if cv.social_network.linkedin %}
+                <h4>Linkedin</h4>
+                <a href="{{cv.social_network.linkedin}}">{{cv.social_network.linkedin}}</a>
+                {% endif %}
+                {% if cv.social_network.github %}
+                <h4>Github</h4>
+                <a href="{{cv.social_network.github}}">{{cv.social_network.github}}</a>
+                {% endif %}
+                {% if cv.social_network.portfolio %}
+                <h4>Portafolio</h4>
+                <a href="{{cv.social_network.portfolio}}">{{cv.social_network.portfolio}}</a>
+                {% endif %}
+                {% if cv.social_network.twitter %}
+                <h4>Twitter</h4>
+                <a href="{{cv.social_network.twitter}}">{{cv.social_network.twitter}}</a>
+                {% endif %}
+                {% if cv.social_network.otras %}
+                <h4>Otras</h4>
+                <a href="{{cv.social_network.otras}}">{{cv.social_network.otras}}</a>
+                {% endif %}
+            </article>
+            {% endif %}
+
+            {% if cv.interests %}
+            <article class="flex_square" id="interest">
+                <h3>Intereses</h3>
+                <div class="square_subdivision">
+                    {% for element in cv.interests %}
+                    <div>
+                        <h4>{{element.nombre}}</h4>
+                    </div>
+                    {% endfor %}
+                </div>
+            </article>
+            {% endif %}
+
+            {% if cv.other_info %}
+            <article class="block_square" id="otherInfo">
+                <h3>Otra información</h3>
+                {% if cv.other_info.disponibilidad_viajar %}
+                <div>¡Disponible para viajar!</div>
+                {% else %}
+                <div>¡No disponible para viajar!</div>
+                {% endif %}
+                <div>Teletrabajo : {{cv.other_info.teletrabajo}}</div>
+                {% if cv.other_info.expectativa_salarial %}
+                <div>Expectativa salarial: {{cv.other_info.expectativa_salarial}}</div>
+                {% endif %}
+                {% if cv.other_info.notas %}
+                <div>Notas: {{cv.other_info.notas}}</div>
+                {% endif %}
+            </article>
+            {% endif %}
+        </section>
+    </main>
+
+    <div id="contactModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Contacto</h3>
+            <form id="contactForm">
+                <input type="text" id="contactNombre" placeholder="Nombre" required>
+                <input type="text" id="contactApellidos" placeholder="Apellidos" required>
+                <input type="email" id="contactEmail" placeholder="Correo electrónico" required>
+                <textarea id="contactMensaje" placeholder="Mensaje" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        const activo_left = ["activo", "animate__animated", "animate__backInLeft"];
+        const activo_right = ["activo", "animate__animated", "animate__backInRight"];;
+        const flex_right = ["activo_flex", "animate__animated", "animate__backInRight"];
+
+        const info_bttn = document.querySelector("#info_bttn");
+        const trabajo_bttn = document.querySelector("#perfil_prof_bttn");
+        const experiencia_bttn = document.querySelector("#experiencia_bttn");
+        const education_bttn = document.querySelector("#education_bttn");
+        const complementaryTraining_bttn = document.querySelector("#complementaryTraining_bttn");
+        const skill_bttn = document.querySelector("#skill_bttn");
+        const language_bttn = document.querySelector("#language_bttn");
+        const project_bttn = document.querySelector("#project_bttn");
+        const achievement_bttn = document.querySelector("#achievement_bttn");
+        const volunteering_bttn = document.querySelector("#volunteering_bttn");
+        const socialNetwork_bttn = document.querySelector("#socialNetwork_bttn");
+        const interest_bttn = document.querySelector("#interest_bttn");
+        const otherInfo_bttn = document.querySelector("#otherInfo_bttn");
+
+        const info_article = document.querySelector("#personalInfo");
+        const professional_article = document.querySelector("#professionalProfile");
+        const experiencia_article = document.querySelector("#workExperience");
+        const education_article = document.querySelector("#education");
+        const complementaryTraining_article = document.querySelector("#complementaryTraining");
+        const skill_article = document.querySelector("#skill");
+        const language_article = document.querySelector("#language");
+        const project_article = document.querySelector("#project");
+        const achievement_article = document.querySelector("#achievement");
+        const volunteering_article = document.querySelector("#volunteering");
+        const socialNetwork_article = document.querySelector("#socialNetwork");
+        const interest_article = document.querySelector("#interest");
+        const otherInfo_article = document.querySelector("#otherInfo");
+
+
+
+        info_bttn.addEventListener("click", () => {
+            activo_left.forEach((style) => info_article.classList.toggle(style));
+            info_bttn.classList.toggle("activo_boton");
+        })
+        trabajo_bttn.addEventListener("click", () => {
+            flex_right.forEach((style) => professional_article.classList.toggle(style));
+            trabajo_bttn.classList.toggle("activo_boton");
+        })
+        experiencia_bttn.addEventListener("click", () => {
+            activo_left.forEach((style) => experiencia_article.classList.toggle(style));
+            experiencia_bttn.classList.toggle("activo_boton");
+        })
+        education_bttn.addEventListener("click", () => {
+            activo_right.forEach((style) => education_article.classList.toggle(style));
+            education_bttn.classList.toggle("activo_boton");
+        })
+        complementaryTraining_bttn.addEventListener("click", () => {
+            activo_left.forEach((style) => complementaryTraining_article.classList.toggle(style));
+            complementaryTraining_bttn.classList.toggle("activo_boton");
+        })
+        skill_bttn.addEventListener("click", () => {
+            activo_right.forEach((style) => skill_article.classList.toggle(style));
+            skill_bttn.classList.toggle("activo_boton");
+        })
+        language_bttn.addEventListener("click", () => {
+            activo_left.forEach((style) => language_article.classList.toggle(style));
+            language_bttn.classList.toggle("activo_boton");
+        })
+        project_bttn.addEventListener("click", () => {
+            activo_right.forEach((style) => project_article.classList.toggle(style));
+            project_bttn.classList.toggle("activo_boton");
+        })
+        achievement_bttn.addEventListener("click", () => {
+            activo_left.forEach((style) => achievement_article.classList.toggle(style));
+            achievement_bttn.classList.toggle("activo_boton");
+        })
+        volunteering_bttn.addEventListener("click", () => {
+            activo_right.forEach((style) => volunteering_article.classList.toggle(style));
+            volunteering_bttn.classList.toggle("activo_boton");
+        })
+        socialNetwork_bttn.addEventListener("click", () => {
+            activo_left.forEach((style) => socialNetwork_article.classList.toggle(style));
+            socialNetwork_bttn.classList.toggle("activo_boton");
+        })
+        interest_bttn.addEventListener("click", () => {
+            activo_right.forEach((style) => interest_article.classList.toggle(style));
+            interest_bttn.classList.toggle("activo_boton");
+        })
+        otherInfo_bttn.addEventListener("click", () => {
+            activo_left.forEach((style) => otherInfo_article.classList.toggle(style));
+            otherInfo_bttn.classList.toggle("activo_boton");
+        })
+
+        function toggleAllSections() {
+            const todasLasSecciones = document.querySelectorAll('#main_section article');
+            const todosLosBotones = document.querySelectorAll('#main_nav .button');
+
+            const primeraSeccion = todasLasSecciones[0];
+            const estaVisible = primeraSeccion.classList.contains('activo') ||
+                primeraSeccion.classList.contains('activo_flex');
+
+            todasLasSecciones.forEach(seccion => {
+                if (estaVisible) {
+                    seccion.classList.remove('activo', 'activo_flex', 'animate__animated', 'animate__backInLeft', 'animate__backInRight');
+                } else {
+                    if (seccion.id === 'personalInfo' || seccion.id === 'workExperience' || seccion.id === 'complementaryTraining' || seccion.id === 'language' || seccion.id === 'achievement' || seccion.id === 'socialNetwork' || seccion.id === 'otherInfo') {
+                        activo_left.forEach(style => seccion.classList.add(style));
+                    } else if (seccion.id === 'education' || seccion.id === 'skill' || seccion.id === 'project' || seccion.id === 'volunteering' || seccion.id === 'interest') {
+                        activo_right.forEach(style => seccion.classList.add(style));
+                    } else if (seccion.id === 'professionalProfile') {
+                        flex_right.forEach(style => seccion.classList.add(style));
+                    }
+                }
+            });
+
+
+            todosLosBotones.forEach(boton => {
+                if (estaVisible) {
+                    boton.classList.remove('activo_boton');
+                } else {
+                    boton.classList.add('activo_boton');
+                }
+            });
+        }
+
+        document.querySelectorAll('aside .clickable_image').forEach(icon => {
+            icon.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleAllSections();
+            });
+        });
+
+        // ============================================
+        // FORMULARIO DE CONTACTO
+        // ============================================
+
+        const contactBtn = document.querySelector('#contact');
+        const contactModal = document.querySelector('#contactModal');
+        const closeModal = document.querySelector('.close-modal');
+        const contactForm = document.querySelector('#contactForm');
+
+        // Función para abrir/cerrar el modal de contacto
+        function toggleModal() {
+            if (contactModal.style.display === 'none' || contactModal.style.display === '') {
+                contactModal.style.display = 'block';
+            } else {
+                contactModal.style.display = 'none';
+            }
+        }
+
+        // Abrir/cerrar al hacer clic en #contact
+        if (contactBtn) {
+            contactBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleModal();
+            });
+        }
+
+        // Cerrar al hacer clic en la X
+        if (closeModal) {
+            closeModal.addEventListener('click', () => {
+                contactModal.style.display = 'none';
+            });
+        }
+
+        // Modal de éxito (lo creamos dinámicamente)
+        const successModal = document.createElement('div');
+        successModal.id = 'successModal';
+        successModal.innerHTML = `
+            <div class="modal-content">
+                <span class="close-success">&times;</span>
+                <h3>¡Mensaje enviado!</h3>
+                <p>Tu mensaje se ha enviado correctamente.</p>
+            </div>
+        `;
+        successModal.style.display = 'none';
+        successModal.style.position = 'fixed';
+        successModal.style.top = '80px';
+        successModal.style.right = '20px';
+        successModal.style.width = '320px';
+        successModal.style.backgroundColor = 'var(--colour-primary-background)';
+        successModal.style.border = '2px solid var(--colour-dark)';
+        successModal.style.borderRadius = '15px';
+        successModal.style.boxShadow = '0 5px 25px rgba(0,0,0,0.3)';
+        successModal.style.zIndex = '1001';
+        successModal.style.fontFamily = 'var(--font-family)';
+
+        document.body.appendChild(successModal);
+
+        const closeSuccess = successModal.querySelector('.close-success');
+
+
+        if (closeSuccess) {
+            closeSuccess.addEventListener('click', () => {
+                successModal.style.display = 'none';
+            });
+        }
+
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+
+                console.log('Formulario enviado');
+                console.log('Nombre:', document.querySelector('#contactNombre').value);
+                console.log('Apellidos:', document.querySelector('#contactApellidos').value);
+                console.log('Email:', document.querySelector('#contactEmail').value);
+                console.log('Mensaje:', document.querySelector('#contactMensaje').value);
+
+
+                contactForm.reset();
+
+
+                contactModal.style.display = 'none';
+
+
+                successModal.style.display = 'block';
+            });
+        }
+
+
+        window.addEventListener('click', (e) => {
+            if (e.target === contactModal) {
+                contactModal.style.display = 'none';
+            }
+            if (e.target === successModal) {
+                successModal.style.display = 'none';
+            }
+        });
+
+        if (window.innerWidth <= 480) {
+            successModal.style.width = '90%';
+            successModal.style.right = '5%';
+            successModal.style.left = '5%';
+            successModal.style.top = '70px';
+        }
+    </script>
+
+
+
+</body>
+
+</html>
